@@ -9,8 +9,10 @@ winWidth = 1920
 winHeight = 1080
 
 # Config
+pygame.display.set_caption("Ping Pong")
 winMain = pygame.display.set_mode((winWidth, winHeight))
 clock = pygame.time.Clock()
+font = pygame.font.Font(None, 36)
 
 # Const variables
 
@@ -31,6 +33,7 @@ class Player():
         self.height = height
         self.speed = speed
         self.color = color
+        self.score = 0
 
     def movement(self, up, down):
         if keys[up] and self.y > 0:
@@ -49,7 +52,7 @@ class Ball():
         self.radius = radius
         self.speed = speed
         self.color = color
-        self.direction = random.choice([-45, 45])
+        self.direction = random.choice([-45, -225, 45, 225])
     
     def movement(self):
         self.x += int(self.speed * math.cos(math.radians(self.direction)))
@@ -57,6 +60,14 @@ class Ball():
 
         if self.y - self.radius <= 0 or self.y + self.radius >= winHeight:
             self.direction = -self.direction
+        
+        if self.x - self.radius <= 0:
+            player2.score += 1
+            self.reset([-45, 45])
+        
+        if self.x + self.radius >= winWidth:
+            player1.score += 1
+            self.reset([-225, 225])
     
     def checkCollision(self, player):
         if (
@@ -67,15 +78,27 @@ class Ball():
         ):
             self.direction = 180 - self.direction
 
+    def reset(self, direction):
+        self.x = winWidth // 2
+        self.y = winHeight // 2
+        self.direction = random.choice(direction)
+
     def update(self, win):
         pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
 
 # Update Frame
 def winUpdate():
+    # objects
     winMain.fill(BLACK)
     player1.update(winMain)
     player2.update(winMain)
     ball.update(winMain)
+    # text
+    score_text1 = font.render("Score: " + str(player1.score), True, WHITE)
+    score_text2 = font.render("Score: " + str(player2.score), True, WHITE)
+    winMain.blit(score_text1, (20, 20))
+    winMain.blit(score_text2, (winWidth - 150, 20))
+
     pygame.display.update()
 
 # Create objects
