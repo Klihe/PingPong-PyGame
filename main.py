@@ -10,9 +10,13 @@ winHeight = 1080
 winMain = pygame.display.set_mode((winWidth, winHeight))
 clock = pygame.time.Clock()
 
-# Color
+# Const variables
+
+# Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+# Values
+BLOCK = 60
 
 # Player
 class Player():
@@ -27,6 +31,15 @@ class Player():
     def update(self, win):
         pygame.draw.rect(win, WHITE, (self.x, self.y, self.width, self.height))
 
+# Update Frame
+def winUpdate():
+    winMain.fill(BLACK)
+    player1.update(winMain)
+    pygame.display.update()
+
+# Create objects
+player1 = Player(BLOCK, winHeight / 2, BLOCK / 2, BLOCK * 2, 10, WHITE)
+
 # Game
 run = True
 while run:
@@ -40,5 +53,7 @@ while run:
 
     if keys[pygame.K_ESCAPE]:
             game_display = pygame.display.set_mode((winWidth, winHeight))
+
+    winUpdate()
 
 pygame.quit()
