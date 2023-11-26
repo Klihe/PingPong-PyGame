@@ -1,4 +1,6 @@
 import pygame
+import random
+import math
 
 pygame.init()
 
@@ -35,18 +37,43 @@ class Player():
             self.y += self.speed
 
     def update(self, win):
-        pygame.draw.rect(win, WHITE, (self.x, self.y, self.width, self.height))
+        pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height))
+
+# Ball
+class Ball():
+    def __init__(self, x, y, radius, speed, color):
+        self.x = x
+        self.y = y
+        self.radius = radius
+        self.speed = speed
+        self.color = color
+        self.direction = random.choice([-45, 45])
+    
+    def movement(self):
+        self.x += int(self.speed * math.cos(math.radians(self.direction)))
+        self.y += int(self.speed * math.sin(math.radians(self.direction)))
+
+        if self.x - self.radius <= 0 or self.x + self.radius >= winWidth:
+            self.direction = 180 - self.direction
+
+        if self.y - self.radius <= 0 or self.y + self.radius >= winHeight:
+            self.direction = -self.direction
+
+    def update(self, win):
+        pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
 
 # Update Frame
 def winUpdate():
     winMain.fill(BLACK)
     player1.update(winMain)
     player2.update(winMain)
+    ball.update(winMain)
     pygame.display.update()
 
 # Create objects
 player1 = Player(BLOCK, winHeight / 2, BLOCK / 2, BLOCK * 2, 10, WHITE)
 player2 = Player(winWidth - BLOCK - BLOCK / 2, winHeight / 2, BLOCK / 2, BLOCK * 2, 10, WHITE)
+ball = Ball(winWidth / 2, winHeight / 2, BLOCK / 2, 10, WHITE)
 
 # Game
 run = True
@@ -64,6 +91,7 @@ while run:
 
     player1.movement(pygame.K_w, pygame.K_s)
     player2.movement(pygame.K_UP, pygame.K_DOWN)
+    ball.movement()
 
     winUpdate()
 
