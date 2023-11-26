@@ -17,6 +17,8 @@ clock = pygame.time.Clock()
 # Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+RED = (204, 49, 61)
+BLUE = (64, 142, 198)
 # Values
 BLOCK = 60
 
@@ -53,11 +55,17 @@ class Ball():
         self.x += int(self.speed * math.cos(math.radians(self.direction)))
         self.y += int(self.speed * math.sin(math.radians(self.direction)))
 
-        if self.x - self.radius <= 0 or self.x + self.radius >= winWidth:
-            self.direction = 180 - self.direction
-
         if self.y - self.radius <= 0 or self.y + self.radius >= winHeight:
             self.direction = -self.direction
+    
+    def checkCollision(self, player):
+        if (
+            self.x + self.radius >= player.x
+            and self.x - self.radius <= player.x + player.width
+            and self.y + self.radius >= player.y
+            and self.y - self.radius <= player.y + player.height
+        ):
+            self.direction = 180 - self.direction
 
     def update(self, win):
         pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
@@ -71,9 +79,9 @@ def winUpdate():
     pygame.display.update()
 
 # Create objects
-player1 = Player(BLOCK, winHeight / 2, BLOCK / 2, BLOCK * 2, 10, WHITE)
-player2 = Player(winWidth - BLOCK - BLOCK / 2, winHeight / 2, BLOCK / 2, BLOCK * 2, 10, WHITE)
-ball = Ball(winWidth / 2, winHeight / 2, BLOCK / 2, 10, WHITE)
+player1 = Player(BLOCK, winHeight / 2, BLOCK / 2, BLOCK * 2, 10, RED)
+player2 = Player(winWidth - BLOCK - BLOCK / 2, winHeight / 2, BLOCK / 2, BLOCK * 2, 10, BLUE)
+ball = Ball(winWidth / 2, winHeight / 2, BLOCK / 4, 10, WHITE)
 
 # Game
 run = True
@@ -93,6 +101,13 @@ while run:
     player2.movement(pygame.K_UP, pygame.K_DOWN)
     ball.movement()
 
+    ball.checkCollision(player1)
+    ball.checkCollision(player2)
+
     winUpdate()
 
 pygame.quit()
+
+# def score(self, window, p1Color, p2Color):
+#     if self.x - self.radius <= 0:
+#     elif self.x + self.radius >= winWidth:
