@@ -38,8 +38,10 @@ class Player():
         self.score = 0
         self.abilityActive1 = False
         self.abilityLast1 = 0
+        self.abilityAvailable1 = False
         self.abilityActive2 = False
         self.abilityLast2 = 0
+        self.abilityAvailable2 = False
 
     # Move up,down
     def movement(self, up, down):
@@ -51,32 +53,49 @@ class Player():
     # Make player bigger
     def beBigger(self, slot, cooldownTime, abilityTime):
         currentTime = pygame.time.get_ticks()
-        if keys[slot] and not self.abilityActive1 and currentTime - self.abilityLast1 > cooldownTime:
-            self.abilityActive1 = True
-            self.adjustedY = False
-            self.abilityLast1 = currentTime
-        if self.abilityActive1:
-            if currentTime - self.abilityLast1 < abilityTime:
-                self.height = BLOCK * 4
-                if not self.adjustedY:
-                    self.y -= BLOCK
-                    self.adjustedY = True
-            else:
-                self.height = BLOCK * 2
-                self.abilityActive1 = False
+        # Available
+        if currentTime - self.abilityLast1 > cooldownTime:
+            self.abilityAvailable1 = WHITE # mark as available
+            # Pressed key
+            if keys[slot] and not self.abilityActive1:
+                self.abilityActive1 = True
+                self.adjustedY = False
+                self.abilityLast1 = currentTime
+                # Active
+            if self.abilityActive1:
+                if currentTime - self.abilityLast1 < abilityTime:
+                    self.height = BLOCK * 4
+                    if not self.adjustedY:
+                        self.y -= BLOCK
+                        self.adjustedY = True
+                # Deactivate
+                else:
+                    self.height = BLOCK * 2
+                    self.abilityActive1 = False    
+        else:
+            self.abilityAvailable1 = self.color # mark as unavailable  
+
 
     # Make player faster
     def beFaster(self, slot, cooldownTime, abilityTime):
         currentTime = pygame.time.get_ticks()
-        if keys[slot] and not self.abilityActive2 and currentTime - self.abilityLast2 > cooldownTime:
-            self.abilityActive2 = True
-            self.abilityLast2 = currentTime
-        if self.abilityActive2:
-            if currentTime - self.abilityLast2 < abilityTime:
-                self.speed = 20
-            else:
-                self.speed = 10
-                self.abilityActive2 = False
+        # Available
+        if currentTime - self.abilityLast2 > cooldownTime:
+            self.abilityAvailable2 = WHITE
+            # Pressed key    
+            if keys[slot] and not self.abilityActive2:
+                self.abilityActive2 = True
+                self.abilityLast2 = currentTime
+                # Active
+            if self.abilityActive2:
+                if currentTime - self.abilityLast2 < abilityTime:
+                    self.speed = 20
+                # Deactivate
+                else:
+                    self.speed = 10
+                    self.abilityActive2 = False
+        else:
+            self.abilityAvailable2 = self.color
 
     # Put player to the frame
     def update(self, win):
@@ -97,9 +116,11 @@ class Ball():
         self.x += int(self.speed * math.cos(math.radians(self.direction)))
         self.y += int(self.speed * math.sin(math.radians(self.direction)))
 
+        # Bounce
         if self.y - self.radius <= 0 or self.y + self.radius >= winHeight:
             self.direction = -self.direction
         
+        # Score
         if self.x - self.radius <= 0:
             player2.score += 1
             self.speed = 10
@@ -134,15 +155,23 @@ class Ball():
 # Update Frame
 def winUpdate():
     winMain.fill(BLACK)
+
     # Class
     player1.update(winMain)
     player2.update(winMain)
     ball.update(winMain)
+
     # Text
     scoreText1 = font.render("Score: " + str(player1.score), True, WHITE)
+    winMain.blit(scoreText1, (100, 18))
     scoreText2 = font.render("Score: " + str(player2.score), True, WHITE)
-    winMain.blit(scoreText1, (20, 20))
-    winMain.blit(scoreText2, (winWidth - 150, 20))
+    winMain.blit(scoreText2, (winWidth - 200, 18))
+    pygame.draw.circle(winMain, player1.abilityAvailable1, (BLOCK / 4 + 15, BLOCK / 2), BLOCK / 4)
+    pygame.draw.circle(winMain, player2.abilityAvailable1, (winWidth - BLOCK / 4 - 15, BLOCK / 2), BLOCK / 4)
+    pygame.draw.circle(winMain, player1.abilityAvailable2, (BLOCK / 4 + BLOCK / 4 + 15 + 20, BLOCK / 2), BLOCK / 4)
+    pygame.draw.circle(winMain, player2.abilityAvailable2, (winWidth - BLOCK / 4 - BLOCK / 4 - 15 - 20, BLOCK / 2), BLOCK / 4)
+
+
     # Update
     pygame.display.update()
 
@@ -172,8 +201,8 @@ while run:
     ball.movement()
 
     # Abilities of players
-    player1.beBigger(pygame.K_a, 10000, 2500)
-    player2.beBigger(pygame.K_LEFT, 10000, 2500)
+    player1.beBigger(pygame.K_a, 7500, 2500)
+    player2.beBigger(pygame.K_LEFT, 7500, 2500)
     player1.beFaster(pygame.K_d, 5000, 2500)
     player2.beFaster(pygame.K_RIGHT, 5000, 2500)
 
