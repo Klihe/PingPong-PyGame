@@ -53,10 +53,14 @@ class Player():
         currentTime = pygame.time.get_ticks()
         if keys[slot] and not self.abilityActive1 and currentTime - self.abilityLast1 > cooldownTime:
             self.abilityActive1 = True
+            self.adjustedY = False
             self.abilityLast1 = currentTime
         if self.abilityActive1:
             if currentTime - self.abilityLast1 < abilityTime:
                 self.height = BLOCK * 4
+                if not self.adjustedY:
+                    self.y -= BLOCK
+                    self.adjustedY = True
             else:
                 self.height = BLOCK * 2
                 self.abilityActive1 = False
@@ -135,10 +139,10 @@ def winUpdate():
     player2.update(winMain)
     ball.update(winMain)
     # Text
-    score_text1 = font.render("Score: " + str(player1.score), True, WHITE)
-    score_text2 = font.render("Score: " + str(player2.score), True, WHITE)
-    winMain.blit(score_text1, (20, 20))
-    winMain.blit(score_text2, (winWidth - 150, 20))
+    scoreText1 = font.render("Score: " + str(player1.score), True, WHITE)
+    scoreText2 = font.render("Score: " + str(player2.score), True, WHITE)
+    winMain.blit(scoreText1, (20, 20))
+    winMain.blit(scoreText2, (winWidth - 150, 20))
     # Update
     pygame.display.update()
 
@@ -179,6 +183,6 @@ while run:
 
     # Update frame
     winUpdate()
-    
+
 # If run = False
 pygame.quit()
