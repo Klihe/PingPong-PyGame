@@ -120,7 +120,7 @@ class Ball():
 
         # Bounce
         if self.y - self.radius <= 0 or self.y + self.radius >= winHeight:
-            self.direction = -self.direction
+            self.direction = -self.direction + random.randint(-10, 10)
         
         # Score
         if self.x - self.radius <= 0:
@@ -141,7 +141,7 @@ class Ball():
             and self.y + self.radius >= player.y
             and self.y - self.radius <= player.y + player.height
         ):
-            self.direction = 180 - self.direction
+            self.direction = 180 + random.randint(-10, 10) - self.direction
             self.speed += 1
     
     # Reset position
