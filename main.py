@@ -1,70 +1,48 @@
-# Libraries
 import pygame
+from modules.game import Game
 from modules.config import Config
 from modules.colors import Color
 from modules.objects.ball import Ball
 from modules.objects.player import Player
 
-# init pygame
+
+# Initialize Pygame
 pygame.init()
 
-# Config
-pygame.display.set_caption("Ping Pong")
-winMain = pygame.display.set_mode((Config.winWidth, Config.winHeight))
+# Set up game window
+win_width = 1920
+win_height = 1080
+win = pygame.display.set_mode((win_width, win_height))
+pygame.display.set_caption("Your Game Title")
+
+# Create game instance
+game = Game()
+
+# Main game loop
 clock = pygame.time.Clock()
-font = pygame.font.Font(None, 36)
+running = True
 
-# Update Frame
-def winUpdate():
-    winMain.fill(Color.BLACK)
+while running:
+    clock.tick(60)  # Set the frame rate
 
-    # Class
-    player1.update(winMain)
-    player2.update(winMain)
-    ball.update(winMain)
+    # Handle events
+    game.handleEvents()
 
-    # Text
-    scoreText1 = font.render("Score: " + str(player1.score), True, Color.WHITE)
-    winMain.blit(scoreText1, (100, 18))
-    scoreText2 = font.render("Score: " + str(player2.score), True, Color.WHITE)
-    winMain.blit(scoreText2, (Config.winWidth - 200, 18))
-    pygame.draw.circle(winMain, player1.abilityAvailable1, (60 / 4 + 15, 60 / 2), 60 / 4)
-    pygame.draw.circle(winMain, player2.abilityAvailable1, (Config.winWidth - 60 / 4 - 60 / 4 - 15 - 20, 60 / 2), 60 / 4)
-    pygame.draw.circle(winMain, player1.abilityAvailable2, (60 / 4 + 60 / 4 + 15 + 20, 60 / 2), 60 / 4)
-    pygame.draw.circle(winMain, player2.abilityAvailable2, (Config.winWidth - 60 / 4 - 15, 60 / 2), 60 / 4)
 
-    # Update
-    pygame.display.update()
+    # Update game state
+    game.update(win)
 
-# Create objects
-player1 = Player(60 / 2, Config.winHeight / 2, 60 / 2, 60 * 2, 10, Color.RED)
-player2 = Player(Config.winWidth - 60 / 2 - 60 / 2, Config.winHeight / 2, 60 / 2, 60 * 2, 10, Color.BLUE)
-ball = Ball(Config.winWidth / 2, Config.winHeight / 2, 60 / 4, 10, Color.WHITE)
+    # Draw the game
+    win.fill((0, 0, 0))  # Fill the window with black background
+    game.draw(win)
 
-# Game
-run = True
-while run:
-    clock.tick(60)
+    # Update the display
+    pygame.display.flip()
 
-    # Quit Game
+    # Check for quit event
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            run = False
+            running = False
 
-    # Pressed buttons
-    keys = pygame.key.get_pressed()
-
-    # Movement
-    player1.movement(keys)
-    player2.movement(keys)
-    ball.movement()
-    
-    # Collision between ball and players
-    ball.checkCollision(player1)
-    ball.checkCollision(player2)
-
-    # Update frame
-    winUpdate()
-
-# If run = False
+# Quit Pygame
 pygame.quit()
