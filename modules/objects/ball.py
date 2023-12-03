@@ -14,8 +14,6 @@ class Ball:
         self.color = color
         self.direction = random.choice([-45, -225, 45, 225])
 
-
-
     # Movement on screen
     def movement(self):
         self.x += int(self.speed * math.cos(math.radians(self.direction)))
@@ -23,7 +21,6 @@ class Ball:
 
         if self.y - self.radius <= 0 or self.y + self.radius >= Config.WINDOW_HEIGHT:
             self.direction = -self.direction + random.randint(-5, 5)
-
 
     # Collisions with player
     def checkCollision(self, player):

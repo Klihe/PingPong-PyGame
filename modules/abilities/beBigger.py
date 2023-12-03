@@ -15,6 +15,10 @@ class BeBigger(Ability):
 
     def endFunc(self):
         super().endFunc()
+        self.player.height = self.player.originalHeight
+        if self.player.adjustedY:
+                self.player.y += self.player.originalHeight
+                self.player.adjustedY = False
 
     def updateFunc(self):
         super().updateFunc()
