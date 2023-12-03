@@ -1,5 +1,10 @@
 import pygame
 from modules.game import Game
+from modules.config import Config
+from modules.colors import Color
+from modules.objects.ball import Ball
+from modules.objects.player import Player
+
 
 # Initialize Pygame
 pygame.init()
@@ -22,6 +27,7 @@ while running:
 
     # Handle events
     game.handleEvents()
+
 
     # Update game state
     game.update(win)

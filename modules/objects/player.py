@@ -3,11 +3,13 @@ from modules.config import Config
 
 class Player:
     def __init__(self, x, y, width, height, keyUp, keyDown, speed, color):
+
         self.x = x
         self.y = y
         self.width = width
         self.height = height
         self.originalHeight = height
+
         self.keyUp = keyUp
         self.keyDown = keyDown
         self.speed = speed

@@ -1,4 +1,5 @@
 import pygame
+
 class Ability:
     def __init__(self, player, cooldownTime, abilityTime):
         self.player = player
@@ -12,7 +13,7 @@ class Ability:
             return
         self.lastUse = pygame.time.get_ticks()
         self.active = True
-
+        
     def endFunc(self):
         self.active = False
 
