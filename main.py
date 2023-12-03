@@ -40,8 +40,8 @@ def winUpdate():
     pygame.display.update()
 
 # Create objects
-player1 = Player(60 / 2, Config.WINDOW_HEIGHT / 2, 60 / 2, 60 * 2, 10, Color.RED)
-player2 = Player(Config.WINDOW_WIDTH - 60 / 2 - 60 / 2, Config.WINDOW_HEIGHT / 2, 60 / 2, 60 * 2, 10, Color.BLUE)
+player1 = Player(60 / 2, Config.WINDOW_HEIGHT / 2, 60 / 2, 60 * 2, pygame.K_w, pygame.K_s, 10, Color.RED)
+player2 = Player(Config.WINDOW_WIDTH - 60 / 2 - 60 / 2, Config.WINDOW_HEIGHT / 2, 60 / 2, 60 * 2, pygame.K_UP, pygame.K_DOWN, 10, Color.BLUE)
 ball = Ball(Config.WINDOW_WIDTH / 2, Config.WINDOW_HEIGHT / 2, 60 / 4, 10, Color.WHITE)
 
 # Game
@@ -60,15 +60,15 @@ while run:
             game_display = pygame.display.set_mode((Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT))
 
     # Movement
-    player1.movement(pygame.K_w, pygame.K_s)
-    player2.movement(pygame.K_UP, pygame.K_DOWN)
+    player1.movement(keys)
+    player2.movement(keys)
     ball.movement()
 
     # Abilities of players
-    player1.beBigger(pygame.K_a, 7500, 2500)
-    player2.beBigger(pygame.K_LEFT, 7500, 2500)
-    player1.beFaster(pygame.K_d, 5000, 2500)
-    player2.beFaster(pygame.K_RIGHT, 5000, 2500)
+    # player1.beBigger(pygame.K_a, 7500, 2500)
+    # player2.beBigger(pygame.K_LEFT, 7500, 2500)
+    # player1.beFaster(pygame.K_d, 5000, 2500)
+    # player2.beFaster(pygame.K_RIGHT, 5000, 2500)
 
     # Collision between ball and players
     ball.checkCollision(player1)

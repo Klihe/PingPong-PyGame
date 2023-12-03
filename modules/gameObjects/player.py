@@ -1,5 +1,5 @@
 import pygame
-from config import Config
+from modules.config import Config
 
 class Player:
     def __init__(self, x, y, width, height, keyUp, keyDown, speed, color):

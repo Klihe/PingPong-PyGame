@@ -19,7 +19,7 @@ class Ball():
 
         # Bounce
         if self.y - self.radius <= 0 or self.y + self.radius >= Config.WINDOW_HEIGHT:
-            self.direction = -self.direction + random.randint(-10, 10)
+            self.direction = -self.direction + random.randint(-5, 5)
     
     # Collisions with player
     def checkCollision(self, player):
