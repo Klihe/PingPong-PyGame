@@ -15,6 +15,7 @@ class Ability:
         self.active = True
         
     def endFunc(self):
+        self.lastUse = pygame.time.get_ticks()
         self.active = False
 
     def updateFunc(self):
