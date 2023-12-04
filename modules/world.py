@@ -1,3 +1,4 @@
+# world.py
 from modules.config import Config
 
 class World:

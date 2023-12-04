@@ -1,3 +1,4 @@
+# game.py
 import pygame
 from modules.config import Config
 from modules.colors import Color

@@ -1,3 +1,4 @@
+# beFaster.py
 from modules.abilities.ability import Ability
 
 class BeFaster(Ability):

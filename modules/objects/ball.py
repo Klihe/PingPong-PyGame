@@ -1,11 +1,9 @@
+# ball.py
 import pygame
 import random
 import math
-
 from modules.config import Config
-
 class Ball:
-
     def __init__(self, x, y, radius, speed, color):
         self.x = x
         self.y = y

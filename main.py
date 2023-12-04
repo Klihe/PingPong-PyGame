@@ -1,3 +1,4 @@
+# main.py
 import pygame
 from modules.game import Game
 from modules.config import Config
