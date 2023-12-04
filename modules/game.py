@@ -2,6 +2,7 @@
 import pygame
 from modules.config import Config
 from modules.colors import Color
+from modules.score import renderScores
 from modules.objects.player import Player
 from modules.objects.ball import Ball
 from modules.abilities.beBigger import BeBigger
@@ -24,6 +25,7 @@ class Game:
         ]
 
         self.ball = Ball(x=Config.WINDOW_WIDTH // 2, y=Config.WINDOW_HEIGHT // 2, radius=15, speed=10, color=Color.WHITE)
+        self.font = pygame.font.Font(None, 36)
     
     def handleEvents(self):
         keys = pygame.key.get_pressed()
@@ -43,10 +45,10 @@ class Game:
         if keys[pygame.K_RIGHT]:
             self.abilitiesPlayer2[1].startFunc()
 
-    def update(self, win):
+    def update(self):
         for player in self.players:
             player.movement(pygame.key.get_pressed())
-            player.update(win)
+            player.update()
 
         for ability in self.abilitiesPlayer1:
             ability.updateFunc()
@@ -70,6 +72,7 @@ class Game:
 
     def draw(self, win):
         for player in self.players:
-            player.update(win)
+            player.draw(win)
 
         self.ball.update(win)
+        renderScores(win, self.font, self.players)

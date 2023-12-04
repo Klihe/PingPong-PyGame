@@ -26,11 +26,12 @@ class Player:
         if keys[self.keyDown] and self.y < Config.WINDOW_HEIGHT - self.height:
             self.y += self.speed
 
-    def update(self, win):
+    def update(self):
+        for ability in self.abilities:
+            ability.updateFunc()
+
+    def draw(self, win):
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height))
 
-        for ability in self.abilities:
-            ability.update()
-    
     def increaseScore(self):
         self.score += 1

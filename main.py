@@ -25,7 +25,7 @@ while running:
     game.handleEvents()
 
     # Update game state
-    game.update(win)
+    game.update()
 
     # Draw the game
     win.fill((Color.BLACK))  # Fill the window with black background
