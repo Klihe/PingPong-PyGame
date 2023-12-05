@@ -19,6 +19,3 @@ class BeBigger(Ability):
         if self.player.adjustedY:
                 self.player.y += self.player.originalHeight / 2
                 self.player.adjustedY = False
-
-    def updateFunc(self):
-        super().updateFunc()

@@ -14,6 +14,3 @@ class BeFaster(Ability):
     def endFunc(self):
         super().endFunc()
         self.player.speed = self.speedIncrease / 2
-
-    def updateFunc(self):
-        super().updateFunc()
