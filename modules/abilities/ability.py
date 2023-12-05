@@ -9,17 +9,17 @@ class Ability:
         self.lastUse = 0
         self.active = False
 
-    def startFunc(self):
+    def startFunc(self) -> None:
         if self.cooldownTime > pygame.time.get_ticks() - self.lastUse:
             return
         self.lastUse = pygame.time.get_ticks()
         self.active = True
         
-    def endFunc(self):
+    def endFunc(self) -> None:
         if self.active:
             self.lastUse = pygame.time.get_ticks()
         self.active = False
 
-    def updateFunc(self):
+    def updateFunc(self) -> None:
         if self.abilityTime < pygame.time.get_ticks() - self.lastUse:
             self.endFunc()

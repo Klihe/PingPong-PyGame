@@ -5,7 +5,7 @@ class BeBigger(Ability):
     def __init__(self, player, cooldownTime, abilityTime):
         super().__init__(player, cooldownTime, abilityTime)
 
-    def startFunc(self):
+    def startFunc(self) -> None:
         super().startFunc()
         if self.active:
             self.player.height = self.player.originalHeight * 2
@@ -13,7 +13,7 @@ class BeBigger(Ability):
                 self.player.y -= self.player.originalHeight / 2
                 self.player.adjustedY = True
 
-    def endFunc(self):
+    def endFunc(self) -> None:
         super().endFunc()
         self.player.height = self.player.originalHeight
         if self.player.adjustedY:

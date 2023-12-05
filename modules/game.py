@@ -31,7 +31,7 @@ class Game:
         self.ball = Ball(x=Config.WINDOW_WIDTH // 2, y=Config.WINDOW_HEIGHT // 2, radius=15, speed=10, color=Color.WHITE)
         self.font = pygame.font.Font(None, 36)
     
-    def handleEvents(self):
+    def handleEvents(self) -> None:
         keys = pygame.key.get_pressed()
 
         for event in pygame.event.get():
@@ -39,7 +39,7 @@ class Game:
                 pygame.quit()
                 quit()
 
-        if self.state == GameState.MENU:
+        if self.state == GameState.MENU:   
             if keys[pygame.K_SPACE]:
                 self.state = GameState.PLAYING
         elif self.state == GameState.PLAYING:
@@ -63,7 +63,7 @@ class Game:
                 self.reset_game()
                 self.state = GameState.MENU
 
-    def update(self):
+    def update(self) -> None:
         if self.state == GameState.PLAYING:
             for player in self.players:
                     player.movement(pygame.key.get_pressed())
@@ -89,7 +89,7 @@ class Game:
             for player in self.players:
                 self.ball.checkCollision(player)
 
-    def draw(self, win):
+    def draw(self, win) -> None:
         if self.state == GameState.MENU:
             drawMenu(win, Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT)
 
@@ -102,7 +102,7 @@ class Game:
         elif self.state == GameState.GAME_OVER:
             drawGameOver(win, Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT)
 
-    def reset_game(self):
+    def reset_game(self) -> None:
         self.state = GameState.PLAYING
         for player in self.players:
             player.score = 0

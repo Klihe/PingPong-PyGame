@@ -8,7 +8,7 @@ from modules.colors import Color
 pygame.init()
 
 # Set up game window
-win = pygame.display.set_mode((Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT))
+winMain = pygame.display.set_mode((Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT))
 pygame.display.set_caption("PingPong")
 
 # Create game instance
@@ -28,8 +28,8 @@ while running:
     game.update()
 
     # Draw the game
-    win.fill((Color.BLACK))  # Fill the window with black background
-    game.draw(win)
+    winMain.fill((Color.BLACK))  # Fill the window with black background
+    game.draw(winMain)
 
     # Update the display
     pygame.display.flip()

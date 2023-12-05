@@ -13,7 +13,7 @@ class Ball:
         self.direction = random.choice([-45, -225, 45, 225])
 
     # Movement on screen
-    def movement(self):
+    def movement(self) -> None:
         self.x += int(self.speed * math.cos(math.radians(self.direction)))
         self.y += int(self.speed * math.sin(math.radians(self.direction)))
 
@@ -21,7 +21,7 @@ class Ball:
             self.direction = -self.direction + random.randint(-5, 5)
 
     # Collisions with player
-    def checkCollision(self, player):
+    def checkCollision(self, player) -> None:
         if (
             self.x + self.radius >= player.x
             and self.x - self.radius <= player.x + player.width
@@ -33,12 +33,12 @@ class Ball:
             self.speed += 1
 
     # Reset position
-    def reset(self, direction):
+    def reset(self, direction) -> None:
         self.x = Config.WINDOW_WIDTH // 2
         self.y = Config.WINDOW_HEIGHT // 2
 
         self.direction = random.choice(direction)
 
     # Put ball to the frame
-    def update(self, win):
+    def update(self, win) -> None:
         pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
