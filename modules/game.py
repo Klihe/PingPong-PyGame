@@ -16,12 +16,12 @@ class Game:
         ]
 
         self.abilitiesPlayer1 = [
-            BeBigger(player=self.players[0], slot=0, cooldownTime=2000, abilityTime=5000),
-            BeFaster(player=self.players[0], slot=1, cooldownTime=3000, abilityTime=4000, speedIncrease=20)
+            BeBigger(player=self.players[0], cooldownTime=2000, abilityTime=5000),
+            BeFaster(player=self.players[0], ooldownTime=3000, abilityTime=4000, speedIncrease=20)
         ]
         self.abilitiesPlayer2 = [
-            BeBigger(player=self.players[1], slot=0, cooldownTime=2000, abilityTime=5000),
-            BeFaster(player=self.players[1], slot=1, cooldownTime=3000, abilityTime=4000, speedIncrease=20)
+            BeBigger(player=self.players[1], cooldownTime=2000, abilityTime=5000),
+            BeFaster(player=self.players[1], cooldownTime=3000, abilityTime=4000, speedIncrease=20)
         ]
 
         self.ball = Ball(x=Config.WINDOW_WIDTH // 2, y=Config.WINDOW_HEIGHT // 2, radius=15, speed=10, color=Color.WHITE)

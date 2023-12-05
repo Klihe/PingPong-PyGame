@@ -2,9 +2,8 @@
 from modules.abilities.ability import Ability
 
 class BeBigger(Ability):
-    def __init__(self, player, slot, cooldownTime, abilityTime):
+    def __init__(self, player, cooldownTime, abilityTime):
         super().__init__(player, cooldownTime, abilityTime)
-        self.slot = slot
 
     def startFunc(self):
         super().startFunc()
