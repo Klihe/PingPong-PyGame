@@ -23,21 +23,18 @@ while running:
     
     # Handle events
     game.handleEvents()
-
     # Update game state
     game.update()
-
     # Draw the game
-    winMain.fill((Color.BLACK))  # Fill the window with black background
     game.draw(winMain)
-
-    # Update the display
-    pygame.display.flip()
 
     # Check for quit event
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+    # Update the display
+    pygame.display.flip()
 
 # Quit Pygame
 pygame.quit()

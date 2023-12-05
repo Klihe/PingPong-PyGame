@@ -2,6 +2,7 @@
 import pygame
 from modules.colors import Color
 
+# draw item in MENU - state
 def drawMenu(win, window_width, window_height) -> None:
     menu_font = pygame.font.Font(None, 48)
     text = menu_font.render("Press SPACE to Start", True, Color.WHITE)

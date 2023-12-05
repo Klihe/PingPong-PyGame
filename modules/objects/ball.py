@@ -40,5 +40,5 @@ class Ball:
         self.direction = random.choice(direction)
 
     # Put ball to the frame
-    def update(self, win) -> None:
+    def draw(self, win) -> None:
         pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)

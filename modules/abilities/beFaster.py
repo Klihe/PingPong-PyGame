@@ -6,11 +6,13 @@ class BeFaster(Ability):
         super().__init__(player, cooldownTime, abilityTime)
         self.speedIncrease = speedIncrease
 
+    # make player faster
     def startFunc(self) -> None:
         super().startFunc()
         if self.active:
             self.player.speed = self.speedIncrease
 
+    # set default value
     def endFunc(self) -> None:
         super().endFunc()
         self.player.speed = self.speedIncrease / 2

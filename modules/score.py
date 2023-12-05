@@ -3,10 +3,13 @@ import pygame
 from modules.config import Config
 from modules.colors import Color
 
+# Score of players
 def renderScores(win, font, players) -> None:
+    # player 1 - score text
     scoreText1 = font.render("Score: " + str(players[0].score), True, Color.WHITE)
     win.blit(scoreText1, (100, 18))
 
+    # player 2 - score text
     scoreText2 = font.render("Score: " + str(players[1].score), True, Color.WHITE)
     win.blit(scoreText2, (Config.WINDOW_WIDTH - 200, 18))
 
