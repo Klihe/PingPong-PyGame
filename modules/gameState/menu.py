@@ -19,9 +19,9 @@ def drawMenu(win, windowWidth, windowHeight, players) -> None:
     win.blit(name, (100, 110))
     # character
     pygame.draw.rect(win, Color.BLACK, (90, 240, 810 / 2 - 15, 750))
-    char = charFont.render("" + str(players[0].value), True, Color.WHITE)
-    win.blit(char, (120, 400))
-
+    pygame.draw.rect(win, players[0].color, (225, 380, 120, 480))
+    # char = charFont.render("" + str(players[0].value), True, Color.WHITE)
+    # win.blit(char, (120, 400))
     # stats
     pygame.draw.rect(win, Color.BLACK, (510, 240, 810 / 2 - 15, 750 / 2 - 15))
     width = statsFont.render("Width: " + str(players[0].width), True, Color.WHITE)

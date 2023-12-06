@@ -45,14 +45,14 @@ class Game:
         # MENU - state
         if self.state == GameState.MENU:
             if keys[pygame.K_a]:
-                self.players[0].plusValue(-1)
+                self.players[0].plusValue(-1, len(characterValue) - 1)
             if keys[pygame.K_d]:
-                self.players[0].plusValue(1)       
+                self.players[0].plusValue(1, len(characterValue) - 1)       
             # activate abilities for player2
             if keys[pygame.K_LEFT]:
-                self.players[1].plusValue(-1)
+                self.players[1].plusValue(-1, len(characterValue) - 1)
             if keys[pygame.K_RIGHT]:
-                self.players[1].plusValue(1)
+                self.players[1].plusValue(1, len(characterValue) - 1)
 
             if keys[pygame.K_SPACE]:
                 self.state = GameState.PLAYING
@@ -92,11 +92,10 @@ class Game:
     def update(self) -> None:
         # MENU - state
         if self.state == GameState.MENU:
+            # character selection
             for player in self.players:
-                if player.value == 0:
-                    player.selectCharacter(characterValue[0])
-                elif player.value == 1:
-                    player.selectCharacter(characterValue[1])
+                player.selectCharacter(characterValue[player.value])
+                player.selectCharacter(characterValue[player.value])
 
         # PLAYING - state
         elif self.state == GameState.PLAYING:

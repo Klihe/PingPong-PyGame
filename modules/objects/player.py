@@ -35,8 +35,13 @@ class Player:
     def draw(self, win) -> None:
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height))
 
-    def plusValue(self, direction):
-        self.value += direction
+    def plusValue(self, direction, maxValue):
+        if self.value >= maxValue:
+            self.value = 0
+        elif self.value <= 0:
+            self.value = maxValue
+        else:
+            self.value += direction
         pygame.time.delay(100)
         
     # Increase the score for the player
