@@ -3,23 +3,24 @@ import pygame
 from modules.config import Config
 
 class Player:
-    def __init__(self, name, value, x, y, width, height, keyUp, keyDown, speed, color):
-        self.name = name
+    def __init__(self, value, x, y, keyUp, keyDown, color):
         self.value = value
-
         self.x = x
         self.y = y
-        self.width = width
-        self.height = height
-        self.speed = speed
 
         self.keyUp = keyUp
         self.keyDown = keyDown
         self.color = color
         self.score = 0
 
-        self.originalHeight = height
-        self.adjustedY = False
+        # self.originalHeight = height
+        # self.adjustedY = False
+
+    def selectCharacter(self, character):
+        self.name = character.name
+        self.width = character.width
+        self.height = character.height
+        self.speed = character.speed
 
     # Movement of player
     def movement(self, keys) -> None:

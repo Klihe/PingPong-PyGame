@@ -10,6 +10,7 @@ from modules.abilities.beFaster import BeFaster
 from modules.gameState.menu import drawMenu
 from modules.gameState.gameOver import drawGameOver
 from modules.gameState.state import GameState
+from modules.character import characterValue
 
 class Game:
     def __init__(self):
@@ -18,8 +19,8 @@ class Game:
 
         # create players
         self.players = [
-            Player(name="Player1", value=0, x=30, y=Config.WINDOW_HEIGHT / 2, width=30, height=120, keyUp=pygame.K_w, keyDown=pygame.K_s, speed=10, color=Color.RED),
-            Player(name="Player2", value=0, x=Config.WINDOW_WIDTH - 60, y=Config.WINDOW_HEIGHT / 2, width=30, height=120, keyUp=pygame.K_UP, keyDown=pygame.K_DOWN, speed=10, color=Color.BLUE)
+            Player(value=0, x=30, y=Config.WINDOW_HEIGHT / 2, keyUp=pygame.K_w, keyDown=pygame.K_s, color=Color.RED),
+            Player(value=0, x=Config.WINDOW_WIDTH - 60, y=Config.WINDOW_HEIGHT / 2, keyUp=pygame.K_UP, keyDown=pygame.K_DOWN, color=Color.BLUE)
         ]
 
         # give them abilities
@@ -89,12 +90,19 @@ class Game:
                 self.state = GameState.MENU
 
     def update(self) -> None:
+        # MENU - state
+        if self.state == GameState.MENU:
+            for player in self.players:
+                if player.value == 0:
+                    player.selectCharacter(characterValue[0])
+                elif player.value == 1:
+                    player.selectCharacter(characterValue[1])
+
         # PLAYING - state
-        if self.state == GameState.PLAYING:
+        elif self.state == GameState.PLAYING:
             # update position of all players
             for player in self.players:
                     player.movement(pygame.key.get_pressed())
-                    player.update()
 
             # update state of abilities - player1
             for ability in self.abilitiesPlayer1:
