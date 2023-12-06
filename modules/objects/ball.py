@@ -10,6 +10,9 @@ class Ball:
         self.radius = radius
         self.speed = speed
         self.color = color
+
+        self.originalSpeed = speed
+        
         self.direction = random.choice([-45, -225, 45, 225])
 
     # Movement on screen

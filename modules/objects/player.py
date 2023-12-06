@@ -20,6 +20,7 @@ class Player:
         self.width = character.width
         self.height = character.height
         self.speed = character.speed
+        
         self.originalHeight = character.height
         self.originalSpeed = character.speed
 

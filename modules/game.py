@@ -113,12 +113,12 @@ class Game:
             # player1 - boarder
             if self.ball.x - self.ball.radius <= 0:
                 self.players[1].increaseScore()
-                self.ball.speed = 10
+                self.ball.speed = self.ball.originalSpeed
                 self.ball.reset([-45, 45])
             # player2 - boarder
             elif self.ball.x + self.ball.radius >= Config.WINDOW_WIDTH:
                 self.players[0].increaseScore()
-                self.ball.speed = 10
+                self.ball.speed = self.ball.originalSpeed
                 self.ball.reset([-225, 225])
 
             # update position of ball
