@@ -13,14 +13,14 @@ class Player:
         self.color = color
         self.score = 0
 
-        # self.originalHeight = height
-        # self.adjustedY = False
+        self.adjustedY = False
 
     def selectCharacter(self, character):
         self.name = character.name
         self.width = character.width
         self.height = character.height
         self.speed = character.speed
+        self.originalHeight = character.height
 
     # Movement of player
     def movement(self, keys) -> None:
