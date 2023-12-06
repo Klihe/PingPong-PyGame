@@ -18,8 +18,8 @@ class Game:
 
         # create players
         self.players = [
-            Player(x=30, y=Config.WINDOW_HEIGHT / 2, width=30, height=120, keyUp=pygame.K_w, keyDown=pygame.K_s, speed=10, color=Color.RED),
-            Player(x=Config.WINDOW_WIDTH - 60, y=Config.WINDOW_HEIGHT / 2, width=30, height=120, keyUp=pygame.K_UP, keyDown=pygame.K_DOWN, speed=10, color=Color.BLUE)
+            Player(name="Player1", value=0, x=30, y=Config.WINDOW_HEIGHT / 2, width=30, height=120, keyUp=pygame.K_w, keyDown=pygame.K_s, speed=10, color=Color.RED),
+            Player(name="Player2", value=0, x=Config.WINDOW_WIDTH - 60, y=Config.WINDOW_HEIGHT / 2, width=30, height=120, keyUp=pygame.K_UP, keyDown=pygame.K_DOWN, speed=10, color=Color.BLUE)
         ]
 
         # give them abilities
@@ -114,7 +114,7 @@ class Game:
         # MENU - state
         if self.state == GameState.MENU:
             # draw menu
-            drawMenu(win, Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT)
+            drawMenu(win, Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT, self.players)
 
         # PLAYING - state
         elif self.state == GameState.PLAYING:

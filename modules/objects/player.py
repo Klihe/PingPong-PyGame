@@ -3,12 +3,14 @@ import pygame
 from modules.config import Config
 
 class Player:
-    def __init__(self, x, y, width, height, keyUp, keyDown, speed, color):
+    def __init__(self, name, value, x, y, width, height, keyUp, keyDown, speed, color):
+        self.name = name
+        self.value = value
+
         self.x = x
         self.y = y
         self.width = width
         self.height = height
-        self.originalHeight = height
         self.speed = speed
 
         self.keyUp = keyUp
@@ -16,6 +18,7 @@ class Player:
         self.color = color
         self.score = 0
 
+        self.originalHeight = height
         self.adjustedY = False
 
     # Movement of player
