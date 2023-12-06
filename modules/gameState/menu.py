@@ -5,6 +5,7 @@ from modules.objects.player import Player
 
 # draw item in MENU - state
 def drawMenu(win, windowWidth, windowHeight, players) -> None:
+    win.fill(Color.BLACK)
     menuFont = pygame.font.Font(None, 48)
     nameFont = pygame.font.Font(None, 120)
     statsFont = pygame.font.Font(None, 48)

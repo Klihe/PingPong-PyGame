@@ -79,7 +79,7 @@ class Game:
             
             # GAME OVER - when someone has 25 score
             for player in self.players:
-                    if player.score >= 25:
+                    if player.score >= 1:
                         self.state = GameState.GAME_OVER
         
         # GAME OVER - state
@@ -88,6 +88,7 @@ class Game:
             if keys[pygame.K_SPACE]:
                 self.resetGame()
                 self.state = GameState.MENU
+                pygame.time.delay(100)
 
     def update(self) -> None:
         # MENU - state
