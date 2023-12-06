@@ -26,11 +26,11 @@ class Game:
         # give them abilities
         self.abilitiesPlayer1 = [
             BeTaller(player=self.players[0], cooldownTime=2000, abilityTime=5000),
-            BeFaster(player=self.players[0], cooldownTime=3000, abilityTime=4000, speedIncrease=20)
+            BeFaster(player=self.players[0], cooldownTime=3000, abilityTime=4000)
         ]
         self.abilitiesPlayer2 = [
             BeTaller(player=self.players[1], cooldownTime=2000, abilityTime=5000),
-            BeFaster(player=self.players[1], cooldownTime=3000, abilityTime=4000, speedIncrease=20)
+            BeFaster(player=self.players[1], cooldownTime=3000, abilityTime=4000)
         ]
 
         # create ball

@@ -21,6 +21,7 @@ class Player:
         self.height = character.height
         self.speed = character.speed
         self.originalHeight = character.height
+        self.originalSpeed = character.speed
 
     # Movement of player
     def movement(self, keys) -> None:
