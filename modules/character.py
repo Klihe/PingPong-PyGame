@@ -8,5 +8,6 @@ class Character:
 
 characterValue = [
     Character(name="Basic", width=30, height=120, speed=10),
-    Character(name="Boosted", width=25, height=100, speed=15)
+    Character(name="Fast", width=25, height=80, speed=15),
+    Character(name="Slow", width=50, height=200, speed=5)
 ]
