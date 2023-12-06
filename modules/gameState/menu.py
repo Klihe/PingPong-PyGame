@@ -18,9 +18,7 @@ def drawMenu(win, windowWidth, windowHeight, players) -> None:
     win.blit(name, (100, 110))
     # character
     pygame.draw.rect(win, Color.BLACK, (90, 240, 810 / 2 - 15, 750))
-    pygame.draw.rect(win, players[0].color, (225, 380, 120, 480))
-    # char = charFont.render("" + str(players[0].value), True, Color.WHITE)
-    # win.blit(char, (120, 400))
+    pygame.draw.rect(win, players[0].color, (285 - players[0].width / 2 * 3, 615 - players[0].height / 2 * 3, players[0].width * 3, players[0].height * 3))
     # stats
     pygame.draw.rect(win, Color.BLACK, (510, 240, 810 / 2 - 15, 750 / 2 - 15))
     width = statsFont.render("Width: " + str(players[0].width), True, Color.WHITE)
@@ -42,7 +40,7 @@ def drawMenu(win, windowWidth, windowHeight, players) -> None:
     win.blit(name, (100 + 930, 110))
     # character
     pygame.draw.rect(win, Color.BLACK, (90 + 930, 240, 810 / 2 - 15, 750))
-    pygame.draw.rect(win, players[1].color, (225 + 930, 380, 120, 480))
+    pygame.draw.rect(win, players[1].color, (285 + 930 - players[1].width / 2 * 3, 615 - players[1].height / 2 * 3, players[1].width * 3, players[1].height * 3))
     # char = charFont.render("" + str(players[0].value), True, Color.WHITE)
     # win.blit(char, (120, 400))
     # stats
