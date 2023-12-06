@@ -37,9 +37,9 @@ class Player:
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height))
 
     def plusValue(self, direction, maxValue):
-        if self.value >= maxValue:
+        if self.value + direction > maxValue:
             self.value = 0
-        elif self.value <= 0:
+        elif self.value + direction < 0:
             self.value = maxValue
         else:
             self.value += direction
