@@ -42,7 +42,17 @@ class Game:
         keys = pygame.key.get_pressed()
 
         # MENU - state
-        if self.state == GameState.MENU:   
+        if self.state == GameState.MENU:
+            if keys[pygame.K_a]:
+                self.players[0].plusValue(-1)
+            if keys[pygame.K_d]:
+                self.players[0].plusValue(1)       
+            # activate abilities for player2
+            if keys[pygame.K_LEFT]:
+                self.players[1].plusValue(-1)
+            if keys[pygame.K_RIGHT]:
+                self.players[1].plusValue(1)
+
             if keys[pygame.K_SPACE]:
                 self.state = GameState.PLAYING
 

@@ -8,6 +8,7 @@ def drawMenu(win, windowWidth, windowHeight, players) -> None:
     menuFont = pygame.font.Font(None, 48)
     nameFont = pygame.font.Font(None, 120)
     statsFont = pygame.font.Font(None, 48)
+    charFont = pygame.font.Font(None, 200)
     text = menuFont.render("Press SPACE to Start", True, Color.WHITE)
     # Player 1
     # background
@@ -18,6 +19,9 @@ def drawMenu(win, windowWidth, windowHeight, players) -> None:
     win.blit(name, (100, 110))
     # character
     pygame.draw.rect(win, Color.BLACK, (90, 240, 810 / 2 - 15, 750))
+    char = charFont.render("" + str(players[0].value), True, Color.WHITE)
+    win.blit(char, (120, 400))
+
     # stats
     pygame.draw.rect(win, Color.BLACK, (510, 240, 810 / 2 - 15, 750 / 2 - 15))
     width = statsFont.render("Width: " + str(players[0].width), True, Color.WHITE)

@@ -34,6 +34,10 @@ class Player:
     def draw(self, win) -> None:
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height))
 
+    def plusValue(self, direction):
+        self.value += direction
+        pygame.time.delay(100)
+        
     # Increase the score for the player
     def increaseScore(self) -> None:
         self.score += 1
