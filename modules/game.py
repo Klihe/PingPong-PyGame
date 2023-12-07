@@ -26,6 +26,7 @@ class Game:
 
         # give them abilities
         self.players[0].addAbility(BeTaller(player=self.players[0]))
+        self.players[1].addAbility(BeTaller(player=self.players[1]))
 
         # create ball
         self.ball = Ball(x=Config.WINDOW_WIDTH // 2, y=Config.WINDOW_HEIGHT // 2, radius=15, speed=10, color=Color.WHITE)
@@ -63,6 +64,12 @@ class Game:
             # activate abilities for player1
             if keys[pygame.K_a]:
                 self.players[0].abilities[0].startFunc()
+            if keys[pygame.K_d]:
+                self.players[0].abilities[1].startFunc()
+            if keys[pygame.K_LEFT]:
+                self.players[1].abilities[0].startFunc()
+            if keys[pygame.K_RIGHT]:
+                self.players[1].abilities[1].startFunc()
             
             # GAME OVER - when someone has 25 score
             for player in self.players:
