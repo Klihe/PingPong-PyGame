@@ -1,11 +1,10 @@
 # ability.py
 import pygame
-
 class Ability:
-    def __init__(self, player, cooldownTime, abilityTime):
+    def __init__(self, player):
         self.player = player
-        self.cooldownTime = cooldownTime
-        self.abilityTime = abilityTime
+        self.cooldownTime = 0
+        self.abilityTime = 0
         self.lastUse = 0
         self.active = False
 

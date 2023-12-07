@@ -2,8 +2,10 @@
 from modules.abilities.ability import Ability
 
 class BeFaster(Ability):
-    def __init__(self, player, cooldownTime, abilityTime):
-        super().__init__(player, cooldownTime, abilityTime)
+    def __init__(self, player):
+        super().__init__(player)
+        self.cooldownTime = 2000
+        self.abilityTime = 5000
 
     # make player faster
     def startFunc(self) -> None:

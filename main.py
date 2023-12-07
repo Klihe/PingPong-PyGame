@@ -8,7 +8,7 @@ from modules.colors import Color
 pygame.init()
 
 # Set up game window
-winMain = pygame.display.set_mode((Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT))
+winMain = pygame.display.set_mode((Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT), pygame.FULLSCREEN)
 pygame.display.set_caption("PingPong")
 
 # Create game instance

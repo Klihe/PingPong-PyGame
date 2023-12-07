@@ -23,15 +23,9 @@ class Game:
             Player(value=0, x=Config.WINDOW_WIDTH - 60, y=Config.WINDOW_HEIGHT / 2, keyUp=pygame.K_UP, keyDown=pygame.K_DOWN, color=Color.BLUE)
         ]
 
+
         # give them abilities
-        self.abilitiesPlayer1 = [
-            BeTaller(player=self.players[0], cooldownTime=2000, abilityTime=5000),
-            BeFaster(player=self.players[0], cooldownTime=3000, abilityTime=4000)
-        ]
-        self.abilitiesPlayer2 = [
-            BeTaller(player=self.players[1], cooldownTime=2000, abilityTime=5000),
-            BeFaster(player=self.players[1], cooldownTime=3000, abilityTime=4000)
-        ]
+        self.players[0].addAbility(BeTaller(player=self.players[0]))
 
         # create ball
         self.ball = Ball(x=Config.WINDOW_WIDTH // 2, y=Config.WINDOW_HEIGHT // 2, radius=15, speed=10, color=Color.WHITE)
@@ -68,18 +62,11 @@ class Game:
 
             # activate abilities for player1
             if keys[pygame.K_a]:
-                self.abilitiesPlayer1[0].startFunc()
-            if keys[pygame.K_d]:
-                self.abilitiesPlayer1[1].startFunc()        
-            # activate abilities for player2
-            if keys[pygame.K_LEFT]:
-                self.abilitiesPlayer2[0].startFunc()
-            if keys[pygame.K_RIGHT]:
-                self.abilitiesPlayer2[1].startFunc()
+                self.players[0].abilities[0].startFunc()
             
             # GAME OVER - when someone has 25 score
             for player in self.players:
-                    if player.score >= 1:
+                    if player.score >= 25:
                         self.state = GameState.GAME_OVER
         
         # GAME OVER - state
@@ -105,11 +92,9 @@ class Game:
                     player.movement(pygame.key.get_pressed())
 
             # update state of abilities - player1
-            for ability in self.abilitiesPlayer1:
-                ability.updateFunc()
-            # update state of abilities - player2
-            for ability in self.abilitiesPlayer2:
-                ability.updateFunc()
+            for player in self.players:
+                for ability in player.abilities:
+                    ability.updateFunc()
 
             # player1 - boarder
             if self.ball.x - self.ball.radius <= 0:

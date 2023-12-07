@@ -1,5 +1,7 @@
 # character.py
-class Character:
+from modules.objects.player import Player
+
+class Character(Player):
     def __init__(self, name, width, height, speed):
         self.name = name
         self.width = width
@@ -9,5 +11,6 @@ class Character:
 characterValue = [
     Character(name="Basic", width=30, height=120, speed=10),
     Character(name="Fast", width=25, height=80, speed=15),
-    Character(name="Big", width=50, height=200, speed=5)
+    Character(name="Big", width=50, height=200, speed=5),
+    Character(name="Ben", width=10, height=120, speed=25)
 ]

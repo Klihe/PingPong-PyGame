@@ -13,7 +13,11 @@ class Player:
         self.color = color
         self.score = 0
 
+        self.abilities = []
         self.adjustedY = False
+
+    def addAbility(self, ability):
+        self.abilities.append(ability)
 
     def selectCharacter(self, character):
         self.name = character.name
