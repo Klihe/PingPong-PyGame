@@ -26,7 +26,9 @@ class Game:
 
         # give them abilities
         self.players[0].addAbility(BeTaller(player=self.players[0]))
-        self.players[1].addAbility(BeTaller(player=self.players[1]))
+        self.players[1].addAbility(BeTaller(player=self.players[0]))
+        self.players[0].addAbility(BeFaster(player=self.players[1]))
+        self.players[1].addAbility(BeFaster(player=self.players[1]))
 
         # create ball
         self.ball = Ball(x=Config.WINDOW_WIDTH // 2, y=Config.WINDOW_HEIGHT // 2, radius=15, speed=10, color=Color.WHITE)
