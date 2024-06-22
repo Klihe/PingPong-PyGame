@@ -1,4 +1,4 @@
-# PingPong
+# PingPong-PyGame
 
 I've been trying to make a ping pong game with some extra content like abilities and different characters.
 
